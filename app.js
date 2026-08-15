@@ -23,7 +23,8 @@ function OnclickNewUser() {
 }
 
 function onLoadUser() {
-    fetch('https://api.freeprojectapi.com/api/UserApp/GetAllUsers')
-        .then(response => response.json())
-        .then(data => console.log(data));
+    fetch('https://api.freeprojectapi.com/api/UserApp/searchUsers').then(response => response.json())
+    .then(data => {
+        
+    });
 }
