@@ -50,3 +50,40 @@ fetch('https://api.freeprojectapi.com/api/UserApp/searchUsers').then(response =>
         usertable.innerHTML = body;
 
     });
+
+function searchOnClick() {
+
+    let st_input = document.getElementById("st_input").value;
+    let pn_input = document.getElementById("pn_input").value;
+    let ps_input = document.getElementById("ps_input").value;
+
+    fetch(`https://api.freeprojectapi.com/api/UserApp/searchUsers?searchText=${st_input}&pageNumber=${pn_input}&pageSize=${ps_input}`).then(response => response.json())
+        .then(res => {
+
+            const user = res.data;
+
+            let body = `
+                    <tr>
+                        <th>User ID</th>
+                        <th>E-mail</th>
+                        <th>Full Name</th>
+                        <th>Password</th>
+                    </tr>
+            `;
+            let usertable = document.getElementById("userTableLoading");
+
+            user.forEach(element => {
+                body += `
+                    <tr>
+                        <td>${element.userId}</td>
+                        <td>${element.emailId}</td>
+                        <td>${element.fullName}</td>
+                        <td>${element.password}</td>
+                    </tr>
+                `;
+            });
+            usertable.innerHTML = body;
+
+        });
+
+}
