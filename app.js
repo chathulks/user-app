@@ -20,8 +20,6 @@ function OnclickNewUser() {
         .then(response => response.json())
         .then(data => console.log(data));
 
-        onLoadUser();
-
 }
 
 function onLoadUser() {
