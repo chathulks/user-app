@@ -22,9 +22,31 @@ function OnclickNewUser() {
 
 }
 
-function onLoadUser() {
-    fetch('https://api.freeprojectapi.com/api/UserApp/searchUsers').then(response => response.json())
-    .then(data => {
-        
+fetch('https://api.freeprojectapi.com/api/UserApp/searchUsers').then(response => response.json())
+    .then(res => {
+
+        const user = res.data;
+
+        let body = `
+                    <tr>
+                        <th>User ID</th>
+                        <th>E-mail</th>
+                        <th>Full Name</th>
+                        <th>Password</th>
+                    </tr>
+            `;
+        let usertable = document.getElementById("userTableLoading");
+
+        user.forEach(element => {
+            body += `
+                    <tr>
+                        <td>${element.userId}</td>
+                        <td>${element.emailId}</td>
+                        <td>${element.fullName}</td>
+                        <td>${element.password}</td>
+                    </tr>
+                `;
+        });
+        usertable.innerHTML = body;
+
     });
-}
