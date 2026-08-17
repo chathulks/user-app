@@ -119,9 +119,6 @@ function onClickResetPassword() {
 
     let email = document.getElementById("email-address").value;
 
-    console.log(email);
-
-
     fetch(`https://api.freeprojectapi.com/api/UserApp/send-reset-otp?emailId=${email}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
