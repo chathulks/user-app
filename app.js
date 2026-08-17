@@ -163,7 +163,7 @@ function onClickOTPcode() {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data.message);
+                console.log(data);
             });
 
         console.log(verfy_data.email);
