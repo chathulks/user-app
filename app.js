@@ -163,6 +163,10 @@ function onClickOTPcode() {
             .then(data => {
                 console.log(data.message);
             });
+
+        console.log(verfy_data.email);
+        console.log(verfy_data.otp);
+        console.log(verfy_data.newPassword);
     }
 
 }
