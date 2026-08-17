@@ -87,3 +87,30 @@ function searchOnClick() {
         });
 
 }
+
+function onClickSignin() {
+
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    const login_user = {
+        "emailId": email,
+        "password": password
+    }
+
+    fetch('https://api.freeprojectapi.com/api/UserApp/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(login_user)
+    })
+        .then(response => response.json())
+        .then(data => {
+            if(data.result == true){
+                console.log("Login Success");
+                
+            }else{
+                console.log("Invalid Details");
+            }
+        });
+
+}
