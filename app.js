@@ -105,12 +105,14 @@ function onClickSignin() {
     })
         .then(response => response.json())
         .then(data => {
-            if(data.result == true){
-                console.log("Login Success");
-                
-            }else{
+            if (data.result == true) {
+                window.location.href = "/usermange.html";
+
+            } else {
                 console.log("Invalid Details");
             }
         });
 
 }
+
+
