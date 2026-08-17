@@ -166,7 +166,6 @@ function onClickOTPcode() {
                 console.log(data);
             });
 
-        console.log(verfy_data.email);
     }
 
 }
