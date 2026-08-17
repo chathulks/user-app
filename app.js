@@ -143,6 +143,8 @@ function onClickOTPcode() {
     let vc_5 = document.getElementById("vc_5").value;
     let vc_6 = document.getElementById("vc_6").value;
 
+    let verfycationCode = vc_1 + "" + vc_2 + "" + vc_3 + "" + vc_4 + "" + vc_5 + "" + vc_6;
+
     let email = document.getElementById("email-address").value;
     let password = document.getElementById("n_pw").value;
     let conform_password = document.getElementById("nc_pw").value;
@@ -150,7 +152,7 @@ function onClickOTPcode() {
     if (password == conform_password) {
         const verfy_data = {
             "email": email,
-            "otp": vc_1 + "" + vc_2 + "" + vc_3 + "" + vc_4 + "" + vc_5 + "" + vc_6,
+            "otp": verfycationCode,
             "newPassword": conform_password
         }
 
@@ -165,8 +167,6 @@ function onClickOTPcode() {
             });
 
         console.log(verfy_data.email);
-        console.log(verfy_data.otp);
-        console.log(verfy_data.newPassword);
     }
 
 }
