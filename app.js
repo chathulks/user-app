@@ -127,7 +127,19 @@ function onClickResetPassword() {
         .then(response => response.json())
         .then(data => {
             console.log(data.message);
-
         });
+
+}
+
+function onClickOTPcode(){
+
+    let vc_1 = document.getElementById("vc_1").value;
+    let vc_2 = document.getElementById("vc_2").value;
+    let vc_3 = document.getElementById("vc_3").value;
+    let vc_4 = document.getElementById("vc_4").value;
+    let vc_5 = document.getElementById("vc_5").value;
+    let vc_6 = document.getElementById("vc_6").value;
+
+    
 
 }
