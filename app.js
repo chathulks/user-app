@@ -131,7 +131,7 @@ function onClickResetPassword() {
 
 }
 
-function onClickOTPcode(){
+function onClickOTPcode() {
 
     let vc_1 = document.getElementById("vc_1").value;
     let vc_2 = document.getElementById("vc_2").value;
@@ -140,6 +140,31 @@ function onClickOTPcode(){
     let vc_5 = document.getElementById("vc_5").value;
     let vc_6 = document.getElementById("vc_6").value;
 
+    let email = document.getElementById("email-address").value;
+    let password = document.getElementById("n_pw").value;
+    let conform_password = document.getElementById("nc_pw").value;
+
+    console.log(email);
+    console.log(vc_1+""+vc_2+""+vc_3+""+vc_4+""+vc_5+""+vc_6);
+    console.log(password);
+    console.log(conform_password);
     
+    
+
+    // const verfy_data = {
+    //     "email": "string",
+    //     "otp": "string",
+    //     "newPassword": "string"
+    // }
+
+    // fetch(`https://api.freeprojectapi.com/api/UserApp/verify-otp-reset-password`, {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify(null)
+    // })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         console.log(data.message);
+    //     });
 
 }
