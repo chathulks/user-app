@@ -118,6 +118,7 @@ function onClickSignin() {
 function onClickResetPassword() {
 
     let email = document.getElementById("email-address").value;
+    let your_email_setSpan = document.getElementById("your-email");
 
     fetch(`https://api.freeprojectapi.com/api/UserApp/send-reset-otp?emailId=${email}`, {
         method: 'POST',
@@ -126,8 +127,10 @@ function onClickResetPassword() {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data.message);
+            alert(data.message);
         });
+
+    your_email_setSpan.innerHTML = email;
 
 }
 
