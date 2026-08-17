@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    
+
     <!-- Sign in Section -->
     <div class="container">
         <div class="row min-vh-100 d-flex justify-content-center align-items-center">
@@ -27,7 +27,7 @@
                     <input type="email" class="form-control p-2" id="password" placeholder="%kj!23@#dfDF">
                 </div>
                 <div class="text-end mt-2">
-                    <input type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    <input type="button" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"
                         class="border-0 bg-body text-primary" value="Froget Password ?" style="font-size: 14px;">
                 </div>
                 <div class="mt-4">
@@ -40,7 +40,7 @@
     <!-- Sign in Section -->
 
     <!-- Modal Forget Password-->
-    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModalToggle" tabindex="-1" aria-labelledby="exampleModalToggleLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content p-3">
                 <div class="modal-header">
@@ -58,15 +58,15 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary">Conform</button>
+                    <button type="button" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Conform</button>
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
     <!-- Modal Forget Password-->
 
     <!-- Model OTP SET -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModalToggle2" tabindex="-1" aria-labelledby="exampleModalToggleLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content p-3">
                 <div class="modal-header">
