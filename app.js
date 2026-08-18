@@ -182,7 +182,7 @@ function updateOnClick() {
         "newPassword": newPassword
     }
 
-    fetch(`https://api.freeprojectapi.com/api/UserApp/update-password?customerId=${user_id}`, {
+    fetch(`https://api.freeprojectapi.com/api/UserApp/update-password/${user_id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(pw_details)
