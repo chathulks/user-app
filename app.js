@@ -172,23 +172,28 @@ function onClickOTPcode() {
 
 function updateOnClick() {
 
-    let user_id = document.getElementById("u_id").value;
+    let user_id = document.getElementById("us_id").value;
 
     let exitPassword = document.getElementById("epw_id").value;
     let newPassword = document.getElementById("npw_id").value;
 
-    const pw_details = {
-        "existingPassword": exitPassword,
-        "newPassword": newPassword
-    }
+    console.log(user_id);
+    console.log(exitPassword);
+    console.log(newPassword);
+    
 
-    fetch(`https://api.freeprojectapi.com/api/UserApp/update-password/${user_id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(pw_details)
-    })
-        .then(response => response.json())
-        .then(data => {
-            alert(data.message);
-        });
+    // const pw_details = {
+    //     "existingPassword": exitPassword,
+    //     "newPassword": newPassword
+    // }
+
+    // fetch(`https://api.freeprojectapi.com/api/UserApp/update-password/${user_id}`, {
+    //     method: 'PUT',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify(pw_details)
+    // })
+    //     .then(response => response.json())
+    //     .then(data => {
+            
+    //     });
 }
