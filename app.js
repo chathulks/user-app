@@ -107,7 +107,6 @@ function onClickSignin() {
         .then(data => {
             if (data.result == true) {
                 window.location.href = "/usermange.html";
-
             } else {
                 console.log("Invalid Details");
             }
@@ -197,4 +196,27 @@ function updateOnClick() {
             console.log(data.status);
         });
 
+}
+
+function onClickGenarateToken() {
+    let user_email = document.getElementById("email").value;
+
+    let t_id = document.getElementById("token_id").value;
+    let rt_id = document.getElementById("refresh_token_id").value;
+
+    const token_data = {
+        "emailId": user_email,
+        "token": t_id,
+        "refreshToken": rt_id
+    }
+
+    fetch(`https://api.freeprojectapi.com/api/UserApp/refresh`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(token_data)
+    })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+        });
 }
