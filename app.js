@@ -172,10 +172,10 @@ function onClickOTPcode() {
 
 function updateOnClick() {
 
-    let user_id = document.getElementById("").value;
+    let user_id = document.getElementById("u_id").value;
 
-    let exitPassword = document.getElementById("").value;
-    let newPassword = document.getElementById("").value;
+    let exitPassword = document.getElementById("epw_id").value;
+    let newPassword = document.getElementById("npw_id").value;
 
     const pw_details = {
         "existingPassword": exitPassword,
