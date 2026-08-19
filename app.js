@@ -51,6 +51,37 @@ fetch('https://api.freeprojectapi.com/api/UserApp/searchUsers').then(response =>
 
     });
 
+function loadingTable() {
+    fetch('https://api.freeprojectapi.com/api/UserApp/searchUsers').then(response => response.json())
+        .then(res => {
+
+            const user = res.data;
+
+            let body = `
+                    <tr>
+                        <th>User ID</th>
+                        <th>E-mail</th>
+                        <th>Full Name</th>
+                        <th>Password</th>
+                    </tr>
+            `;
+            let usertable = document.getElementById("userTableLoading");
+
+            user.forEach(element => {
+                body += `
+                    <tr>
+                        <td>${element.userId}</td>
+                        <td>${element.emailId}</td>
+                        <td>${element.fullName}</td>
+                        <td>${element.password}</td>
+                    </tr>
+                `;
+            });
+            usertable.innerHTML = body;
+
+        });
+}
+
 function searchOnClick() {
 
     let st_input = document.getElementById("st_input").value;
@@ -180,20 +211,22 @@ function updateOnClick() {
     console.log(user_id);
     console.log(exitPassword);
     console.log(newPassword);
-    
 
-    // const pw_details = {
-    //     "existingPassword": exitPassword,
-    //     "newPassword": newPassword
-    // }
 
-    // fetch(`https://api.freeprojectapi.com/api/UserApp/update-password/${user_id}`, {
-    //     method: 'PUT',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify(pw_details)
-    // })
-    //     .then(response => response.json())
-    //     .then(data => {
-            
-    //     });
+    const pw_details = {
+        "existingPassword": exitPassword,
+        "newPassword": newPassword
+    }
+
+    fetch(`https://api.freeprojectapi.com/api/UserApp/update-password/${user_id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(pw_details)
+    })
+        .then(response => response.json())
+        .then(data => {
+
+        });
+        
+    loadingTable();
 }
