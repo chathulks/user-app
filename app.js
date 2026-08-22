@@ -93,8 +93,6 @@ function onClickSignin() {
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
 
-    let log_user = document.getElementById("log_User");
-
     const login_user = {
         "emailId": email,
         "password": password
@@ -109,7 +107,6 @@ function onClickSignin() {
         .then(data => {
             if (data.result == true) {
                 window.location.href = "/usermange.html";
-                log_user.innerHTML = data.emailId;
             } else {
                 console.log("Invalid Details");
             }
