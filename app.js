@@ -107,6 +107,7 @@ function onClickSignin() {
         .then(data => {
             if (data.result == true) {
                 window.location.href = "/usermange.html";
+                email.innerHTML = 
             } else {
                 console.log("Invalid Details");
             }
@@ -219,4 +220,20 @@ function onClickGenarateToken() {
         .then(data => {
             alert(data.message);
         });
+}
+
+function setUerDataRefreshTocken() {
+
+    let usLoginEmail = document.getElementById("userTableLoading");
+
+    fetch(`https://api.freeprojectapi.com/api/UserApp/searchUsers?searchText=${usLoginEmail}`).then(response => response.json())
+        .then(res => {
+
+            let token_id = document.getElementById("token_id");
+            let rt_id = document.getElementById("refresh_token_id").value;
+
+            usertable.innerHTML = body;
+
+        });
+
 }
