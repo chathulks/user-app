@@ -107,7 +107,7 @@ function onClickSignin() {
         .then(data => {
             if (data.result == true) {
                 window.location.href = "/usermange.html";
-                email.innerHTML = 
+                email.innerHTML = document.getElementById("log_user_email").value;
             } else {
                 console.log("Invalid Details");
             }
