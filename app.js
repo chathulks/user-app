@@ -106,9 +106,6 @@ function onClickSignin() {
         .then(response => response.json())
         .then(data => {
             if (data.result == true) {
-                console.log(data.data.emailId);
-                console.log(data.data.token);
-                console.log(data.data.refreshToken);
                 window.location.href = "/usermange.html";
             } else {
                 console.log("Invalid Details");
