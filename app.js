@@ -200,13 +200,15 @@ function updateOnClick() {
 }
 
 function onClickGenarateToken() {
-    let user_email = document.getElementById("log_User").value;
+
+    const user = localStorage.getItem("user");
+    const userJson = JSON.parse(user);
 
     let t_id = document.getElementById("token_id").value;
     let rt_id = document.getElementById("refresh_token_id").value;
 
     const token_data = {
-        "emailId": user_email,
+        "emailId": userJson.emailId,
         "token": t_id,
         "refreshToken": rt_id
     }
