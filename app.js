@@ -6,13 +6,13 @@ function OnclickNewUser() {
     let u_pw = document.getElementById("u_pw").value;
 
     if (u_id == "") {
-        showAlert("danger", "Please Enter User ID.");
+        showAlert("new-user-alert", "danger", "Please Enter User ID.");
     } else if (u_email == "") {
-        showAlert("danger", "Please Enter Email.");
+        showAlert("new-user-alert", "danger", "Please Enter Email.");
     } else if (u_fulln == "") {
-        showAlert("danger", "Please Enter Full Name.");
+        showAlert("new-user-alert", "danger", "Please Enter Full Name.");
     } else if (u_pw == "") {
-        showAlert("danger", "Please Enter Password.");
+        showAlert("new-user-alert", "danger", "Please Enter Password.");
     } else {
         const user = {
             "userId": u_id,
@@ -30,14 +30,14 @@ function OnclickNewUser() {
             .then(data => {
                 console.log(data);
                 if (data.result == true) {
-                    showAlert("success", data.message);
+                    showAlert("new-user-alert", "success", data.message);
                 } else {
-                    showAlert("danger", data.message);
+                    showAlert("new-user-alert", "danger", data.message);
                 }
             })
             .catch(error => {
                 console.error(error);
-                showAlert("danger", "Something went wrong!");
+                showAlert("new-user-alert", "danger", "Something went wrong!");
             });
 
         document.getElementById("u_id").value = "";
@@ -134,8 +134,10 @@ function onClickSignin() {
             if (data.result == true) {
                 localStorage.setItem("user", JSON.stringify(data.data));
                 window.location.href = "/usermange.html";
+
+                showAlert("sign-in-alert", "success", data.message);
             } else {
-                console.log("Invalid Details");
+                showAlert("sign-in-alert", "danger", data.title);
             }
         });
 }
@@ -268,12 +270,12 @@ function onClickGenarateToken() {
         .then(response => response.json())
         .then(data => {
             if (data.result == true) {
-                showAlert("success", data.message);
+                showAlert("token-alert", "success", data.message);
             }
         })
         .catch(error => {
             console.error(error);
-            showAlert("danger", "Something went wrong!");
+            showAlert("token-alert", "danger", "Something went wrong!");
         });
 }
 
@@ -285,9 +287,8 @@ function setTokent() {
     document.getElementById("refresh_token_id").value = userJson.refreshToken;
 }
 
-function showAlert(type, msg) {
-    document.getElementById("new-user-alert").innerHTML = `<div class='alert alert-${type}'>${msg}</div>`;
-    document.getElementById("token-alert").innerHTML = `<div class='alert alert-${type}'>${msg}</div>`;
+function showAlert(id, type, msg) {
+    document.getElementById(`${id}`).innerHTML = `<div class='alert alert-${type}'>${msg}</div>`;
 }
 
 function logUserEmailSet() {
