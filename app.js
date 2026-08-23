@@ -284,7 +284,8 @@ function setTokent() {
 }
 
 function showAlert(type, msg) {
-    document.getElementById("alert").innerHTML = `<div class='alert alert-${type}'>${msg}</div>`;
+    document.getElementById("new-user-alert").innerHTML = `<div class='alert alert-${type}'>${msg}</div>`;
+    document.getElementById("token-alert").innerHTML = `<div class='alert alert-${type}'>${msg}</div>`;
 }
 
 function logUserEmailSet() {
