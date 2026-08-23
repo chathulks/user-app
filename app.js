@@ -250,16 +250,12 @@ function updateOnClick() {
 
 function onClickGenarateToken() {
 
-    const user = localStorage.getItem("user");
-    const userJson = JSON.parse(user);
-
-    document.getElementById("token_id").value = userJson.token;
-    document.getElementById("refresh_token_id").value = userJson.refreshToken;
-
+    const user = JSON.parse(localStorage.getItem("user"));
+    
     const token_data = {
-        emailId: userJson.emailId,
-        token: userJson.token,
-        refreshToken: userJson.refreshToken
+        emailId: user.emailId,
+        token: user.token,
+        refreshToken: user.refreshToken
     };
 
     fetch("https://api.freeprojectapi.com/api/UserApp/refresh", {
@@ -270,12 +266,8 @@ function onClickGenarateToken() {
         body: JSON.stringify(token_data)
     })
         .then(response => response.json())
-        .then(data => {
-
-            if (data.result == true) {
-                showAlert("success", data.message);
-            }
-
+        .then(data => {            
+            showAlert("success", data.message);
         })
         .catch(error => {
             console.error(error);
@@ -283,13 +275,12 @@ function onClickGenarateToken() {
         });
 }
 
-function setUerDataRefreshTocken() {
-
+function setTokent() {
     const user = localStorage.getItem("user");
     const userJson = JSON.parse(user);
 
-
-
+    document.getElementById("token_id").value = userJson.token;
+    document.getElementById("refresh_token_id").value = userJson.refreshToken;
 }
 
 function showAlert(type, msg) {
