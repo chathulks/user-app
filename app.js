@@ -176,11 +176,6 @@ function updateOnClick() {
     let exitPassword = document.getElementById("epw_id").value;
     let newPassword = document.getElementById("npw_id").value;
 
-    console.log(user_id);
-    console.log(exitPassword);
-    console.log(newPassword);
-
-
     const pw_details = {
         "existingPassword": exitPassword,
         "newPassword": newPassword
@@ -201,15 +196,19 @@ function updateOnClick() {
 function onClickGenarateToken() {
 
     const user = localStorage.getItem("user");
-    const uJson = JSON.parse(user);
+    const userJson = JSON.parse(user);
 
-    let t_id = document.getElementById("token_id").value;
-    let rt_id = document.getElementById("refresh_token_id").value;
+    let token = document.getElementById("token_id").value;
+    let refreshToken = document.getElementById("refresh_token_id").value;
+
+    console.log(userJson.emailId);
+    console.log(token);
+    console.log(refreshToken);
 
     const token_data = {
-        "emailId": uJson.emailId,
-        "token": t_id,
-        "refreshToken": rt_id
+        "emailId": userJson.emailId,
+        "token": token,
+        "refreshToken": refreshToken
     }
 
     fetch(`https://api.freeprojectapi.com/api/UserApp/refresh`, {
