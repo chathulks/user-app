@@ -40,10 +40,10 @@ function OnclickNewUser() {
                 showAlert("danger", "Something went wrong!");
             });
 
-        u_id = "";
-        u_email = "";
-        u_fulln = "";
-        u_pw = "";
+        document.getElementById("u_id").value = "";
+        document.getElementById("u_email").value = "";
+        document.getElementById("u_fulln").value = "";
+        document.getElementById("u_pw").value = "";
     }
 
 }
