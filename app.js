@@ -5,20 +5,42 @@ function OnclickNewUser() {
     let u_fulln = document.getElementById("u_fulln").value;
     let u_pw = document.getElementById("u_pw").value;
 
-    const user = {
-        "userId": u_id,
-        "emailId": u_email,
-        "fullName": u_fulln,
-        "password": u_pw
-    }
+    if (u_id == null) {
+        showAlert("danger", "Please Enter User ID.");
+    } else if (u_email == null) {
+        showAlert("danger", "Please Enter Email.");
+    } else if (u_fulln == null) {
+        showAlert("danger", "Please Enter Full Name.");
+    } else if (u_pw == null) {
+        showAlert("danger", "Please Enter Password.");
+    } else {
+        const user = {
+            "userId": u_id,
+            "emailId": u_email,
+            "fullName": u_fulln,
+            "password": u_pw
+        }
 
-    fetch('https://api.freeprojectapi.com/api/UserApp/CreateNewUser', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
-    })
-        .then(response => response.json())
-        .then(data => console.log(data));
+        fetch('https://api.freeprojectapi.com/api/UserApp/CreateNewUser', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(user)
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if (data.result == true) {
+                    showAlert("success", data.message);
+                } else {
+                    showAlert("danger", data.message);
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                showAlert("danger", "Something went wrong!");
+            });
+
+    }
 
 }
 
@@ -245,8 +267,6 @@ function onClickGenarateToken() {
     })
         .then(response => response.json())
         .then(data => {
-
-            console.log(data);
 
             if (data.result == true) {
                 showAlert("success", data.message);
