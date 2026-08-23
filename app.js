@@ -253,13 +253,13 @@ function onClickGenarateToken() {
     const user = localStorage.getItem("user");
     const userJson = JSON.parse(user);
 
-    let token = document.getElementById("token_id").value;
-    let refreshToken = document.getElementById("refresh_token_id").value;
+    document.getElementById("token_id").value = userJson.token;
+    document.getElementById("refresh_token_id").value = userJson.refreshToken;
 
     const token_data = {
         emailId: userJson.emailId,
-        token: token,
-        refreshToken: refreshToken
+        token: userJson.token,
+        refreshToken: userJson.refreshToken
     };
 
     fetch("https://api.freeprojectapi.com/api/UserApp/refresh", {
@@ -288,12 +288,17 @@ function setUerDataRefreshTocken() {
     const user = localStorage.getItem("user");
     const userJson = JSON.parse(user);
 
-    document.getElementById("log_User").innerHTML = userJson.emailId;
-    document.getElementById("token_id").value = userJson.token;
-    document.getElementById("refresh_token_id").value = userJson.refreshToken;
+
 
 }
 
 function showAlert(type, msg) {
     document.getElementById("alert").innerHTML = `<div class='alert alert-${type}'>${msg}</div>`;
-} 
+}
+
+function logUserEmailSet() {
+    const user = localStorage.getItem("user");
+    const userJson = JSON.parse(user);
+
+    document.getElementById("log_User").innerHTML = userJson.emailId;
+}

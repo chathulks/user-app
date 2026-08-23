@@ -10,7 +10,7 @@
     <title>User Application</title>
 </head>
 
-<body>
+<body onkeydown="searchOnClick()" onkeyup="searchOnClick()" onload="logUserEmailSet()">
 
     <!-- Nav Bar -->
     <nav class="navbar  bg-dark">
@@ -30,17 +30,14 @@
     <div class="container mt-5">
         <div class="row">
             <div class="row d-flex justify-content-start align-items-center mb-4">
-                <div class="col-2">
+                <div class="col-3">
                     <input type="text" class="form-control" id="st_input" placeholder="Search Text">
                 </div>
-                <div class="col-2">
-                    <input type="text" class="form-control" id="pn_input" placeholder="Page Number">
+                <div class="col-3">
+                    <input type="text" class="form-control" id="pn_input" placeholder="Search Page Number">
                 </div>
-                <div class="col-2">
-                    <input type="text" class="form-control" id="ps_input" placeholder="Page Size">
-                </div>
-                <div class="col-1">
-                    <input type="button" class="btn btn-outline-primary" value="SEARCH" onclick="searchOnClick()">
+                <div class="col-3">
+                    <input type="text" class="form-control" id="ps_input" placeholder="Search Page Size">
                 </div>
                 <div class="col-1">
                     <input type="button" class="btn btn-outline-warning" data-bs-toggle="modal"
