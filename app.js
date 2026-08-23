@@ -224,16 +224,11 @@ function onClickGenarateToken() {
 
 function setUerDataRefreshTocken() {
 
-    let usLoginEmail = document.getElementById("userTableLoading");
+    const user = localStorage.getItem("user");
+    const userJson = JSON.parse(user);
 
-    fetch(`https://api.freeprojectapi.com/api/UserApp/searchUsers?searchText=${usLoginEmail}`).then(response => response.json())
-        .then(res => {
-
-            let token_id = document.getElementById("token_id");
-            let rt_id = document.getElementById("refresh_token_id").value;
-
-            usertable.innerHTML = body;
-
-        });
+    document.getElementById("log_User").innerHTML = userJson.emailId;
+    document.getElementById("token_id").innerHTML = userJson.token;
+    document.getElementById("refresh_token_id").innerHTML = userJson.refreshToken;
 
 }
