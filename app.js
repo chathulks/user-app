@@ -106,6 +106,7 @@ function onClickSignin() {
         .then(response => response.json())
         .then(data => {
             if (data.result == true) {
+                localStorage.setItem("user", JSON.stringify(data.data));
                 window.location.href = "/usermange.html";
             } else {
                 console.log("Invalid Details");
