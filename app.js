@@ -251,7 +251,7 @@ function updateOnClick() {
 function onClickGenarateToken() {
 
     const user = JSON.parse(localStorage.getItem("user"));
-    
+
     const token_data = {
         emailId: user.emailId,
         token: user.token,
@@ -266,8 +266,10 @@ function onClickGenarateToken() {
         body: JSON.stringify(token_data)
     })
         .then(response => response.json())
-        .then(data => {            
-            showAlert("success", data.message);
+        .then(data => {
+            if (data.result == true) {
+                showAlert("success", data.message);
+            }
         })
         .catch(error => {
             console.error(error);
