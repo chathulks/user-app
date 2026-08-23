@@ -200,7 +200,7 @@ function updateOnClick() {
 }
 
 function onClickGenarateToken() {
-    let user_email = document.getElementById("email").value;
+    let user_email = document.getElementById("log_User").value;
 
     let t_id = document.getElementById("token_id").value;
     let rt_id = document.getElementById("refresh_token_id").value;
