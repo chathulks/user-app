@@ -193,6 +193,35 @@ function updateOnClick() {
 
 }
 
+// function onClickGenarateToken() {
+
+//     const user = localStorage.getItem("user");
+//     const userJson = JSON.parse(user);
+
+//     let token = document.getElementById("token_id").value;
+//     let refreshToken = document.getElementById("refresh_token_id").value;
+
+//     const token_data = {
+//         "emailId": userJson.emailId,
+//         "token": token,
+//         "refreshToken": refreshToken
+//     }
+
+//     fetch(`https://api.freeprojectapi.com/api/UserApp/refresh`, {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify(token_data)
+//     })
+//         .then(response => response.json())
+//         .then(data => {
+//             if (result.data == true) {
+//                 showAlert("success", data.message);
+//             } else {
+//                 showAlert("danger", data.message || "Genarate Token feiald.!");
+//             }
+//         });
+// }
+
 function onClickGenarateToken() {
 
     const user = localStorage.getItem("user");
@@ -201,24 +230,32 @@ function onClickGenarateToken() {
     let token = document.getElementById("token_id").value;
     let refreshToken = document.getElementById("refresh_token_id").value;
 
-    console.log(userJson.emailId);
-    console.log(token);
-    console.log(refreshToken);
-
     const token_data = {
-        "emailId": userJson.emailId,
-        "token": token,
-        "refreshToken": refreshToken
-    }
+        emailId: userJson.emailId,
+        token: token,
+        refreshToken: refreshToken
+    };
 
-    fetch(`https://api.freeprojectapi.com/api/UserApp/refresh`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+    fetch("https://api.freeprojectapi.com/api/UserApp/refresh", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
         body: JSON.stringify(token_data)
     })
         .then(response => response.json())
         .then(data => {
-            alert(data.message);
+
+            console.log(data);
+
+            if (data.result == true) {
+                showAlert("success", data.message);
+            }
+
+        })
+        .catch(error => {
+            console.error(error);
+            showAlert("danger", "Something went wrong!");
         });
 }
 
@@ -232,3 +269,7 @@ function setUerDataRefreshTocken() {
     document.getElementById("refresh_token_id").value = userJson.refreshToken;
 
 }
+
+function showAlert(type, msg) {
+    document.getElementById("alert").innerHTML = `<div class='alert alert-${type}'>${msg}</div>`;
+} 
