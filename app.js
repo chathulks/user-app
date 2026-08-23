@@ -201,13 +201,13 @@ function updateOnClick() {
 function onClickGenarateToken() {
 
     const user = localStorage.getItem("user");
-    const userJson = JSON.parse(user);
+    const uJson = JSON.parse(user);
 
     let t_id = document.getElementById("token_id").value;
     let rt_id = document.getElementById("refresh_token_id").value;
 
     const token_data = {
-        "emailId": userJson.emailId,
+        "emailId": uJson.emailId,
         "token": t_id,
         "refreshToken": rt_id
     }
@@ -228,16 +228,17 @@ function setUerDataRefreshTocken() {
     const user = localStorage.getItem("user");
     const userJson = JSON.parse(user);
 
+    document.getElementById("log_User").innerHTML = userJson.emailId;
     document.getElementById("token_id").value = userJson.token;
     document.getElementById("refresh_token_id").value = userJson.refreshToken;
 
 }
 
-function setUerEmail() {
+// function setUerEmail() {
 
-    const user = localStorage.getItem("user");
-    const userJson = JSON.parse(user);
+//     const user = localStorage.getItem("user");
+//     const userJson = JSON.parse(user);
 
-    document.getElementById("log_User").innerHTML = userJson.emailId;
-    
-}
+//     document.getElementById("log_User").innerHTML = userJson.emailId;
+
+// }
