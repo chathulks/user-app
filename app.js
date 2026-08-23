@@ -233,12 +233,3 @@ function setUerDataRefreshTocken() {
     document.getElementById("refresh_token_id").value = userJson.refreshToken;
 
 }
-
-// function setUerEmail() {
-
-//     const user = localStorage.getItem("user");
-//     const userJson = JSON.parse(user);
-
-//     document.getElementById("log_User").innerHTML = userJson.emailId;
-
-// }
