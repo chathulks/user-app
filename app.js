@@ -5,13 +5,13 @@ function OnclickNewUser() {
     let u_fulln = document.getElementById("u_fulln").value;
     let u_pw = document.getElementById("u_pw").value;
 
-    if (u_id == null) {
+    if (u_id == "") {
         showAlert("danger", "Please Enter User ID.");
-    } else if (u_email == null) {
+    } else if (u_email == "") {
         showAlert("danger", "Please Enter Email.");
-    } else if (u_fulln == null) {
+    } else if (u_fulln == "") {
         showAlert("danger", "Please Enter Full Name.");
-    } else if (u_pw == null) {
+    } else if (u_pw == "") {
         showAlert("danger", "Please Enter Password.");
     } else {
         const user = {
