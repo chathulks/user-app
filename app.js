@@ -160,11 +160,7 @@ function onClickResetPassword() {
 
                 showAlert("forget-pw-modal", "success", data.message);
 
-                const verifyEmail = {
-                    "useEmail": email
-                }
-
-                localStorage.setItem("verifyData", JSON.stringify(verifyEmail));
+                localStorage.setItem("useEmail", email);
 
                 document.getElementById("email-address").value = "";
 
@@ -213,11 +209,7 @@ function onclickOTPcheck() {
     } else {
         let verfycationCode = vc_1 + "" + vc_2 + "" + vc_3 + "" + vc_4 + "" + vc_5 + "" + vc_6;
 
-        const verifyCode = {
-            "vc": verfycationCode
-        }
-
-        localStorage.setItem("verifyData", JSON.stringify(verifyCode));
+        localStorage.setItem("verifyCode", verfycationCode);
 
         const modal = new bootstrap.Modal(
             document.getElementById("modal-3")
@@ -233,8 +225,8 @@ function onclickOTPcheck() {
 
 function onClickOTPcode() {
 
-    const verifyData = JSON.parse(localStorage.getItem("verifyData"));
-    const verifyEmail = JSON.parse(localStorage.getItem("verifyEmail"));
+    const useEmail = localStorage.getItem("useEmail");
+    const verifyCode = localStorage.getItem("verifyCode");
 
     let password = document.getElementById("n_pw").value;
     let conform_password = document.getElementById("nc_pw").value;
@@ -247,8 +239,8 @@ function onClickOTPcode() {
         if (password == conform_password) {
 
             const verfy_data = {
-                "email": verifyEmail.useEmail,
-                "otp": verifyData.vc,
+                "email": useEmail,
+                "otp": verifyCode,
                 "newPassword": conform_password
             }
 
@@ -259,8 +251,8 @@ function onClickOTPcode() {
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
-                    showAlert("conform-password", "success", "Password Updated.");
+                    localStorage.clear();
+                    showAlert("conform-password", "success", data.response);
                 })
                 .catch(error => {
                     console.error(error);
@@ -268,7 +260,7 @@ function onClickOTPcode() {
                 });
 
         } else {
-            showAlert("conform-password", "danger", "Your Password Not Same.");
+            showAlert("conform-password", "danger", "Your Password Not Same!.");
         }
     }
 
