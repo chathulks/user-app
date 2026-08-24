@@ -147,17 +147,21 @@ function onClickResetPassword() {
     let email = document.getElementById("email-address").value;
     let your_email_setSpan = document.getElementById("your-email");
 
-    fetch(`https://api.freeprojectapi.com/api/UserApp/send-reset-otp?emailId=${email}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(null)
-    })
-        .then(response => response.json())
-        .then(data => {
-            alert(data.message);
-        });
+    if (email == "") {
+        showAlert("forget-pw-modal", "danger", "Please Enter Your Email.");
+    } else if (email !== "") {
+        fetch(`https://api.freeprojectapi.com/api/UserApp/send-reset-otp?emailId=${email}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(null)
+        })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            });
 
-    your_email_setSpan.innerHTML = email;
+        your_email_setSpan.innerHTML = email;
+    }
 
 }
 
