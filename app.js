@@ -160,11 +160,11 @@ function onClickResetPassword() {
 
                 showAlert("forget-pw-modal", "success", data.message);
 
-                const verifyData = {
+                const verifyEmail = {
                     "useEmail": email
                 }
 
-                localStorage.setItem("verifyData", JSON.stringify(verifyData));
+                localStorage.setItem("verifyData", JSON.stringify(verifyEmail));
 
                 document.getElementById("email-address").value = "";
 
@@ -213,11 +213,11 @@ function onclickOTPcheck() {
     } else {
         let verfycationCode = vc_1 + "" + vc_2 + "" + vc_3 + "" + vc_4 + "" + vc_5 + "" + vc_6;
 
-        const verifyData = {
+        const verifyCode = {
             "vc": verfycationCode
         }
 
-        localStorage.setItem("verifyData", JSON.stringify(verifyData));
+        localStorage.setItem("verifyData", JSON.stringify(verifyCode));
 
         const modal = new bootstrap.Modal(
             document.getElementById("modal-3")
