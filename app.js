@@ -260,6 +260,7 @@ async function onClickOTPcode() {
                     document.getElementById("nc_pw").value = "";
 
                     localStorage.clear();
+
                 } else {
                     showAlert("conform-password", "danger", result);
                 }
