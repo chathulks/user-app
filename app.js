@@ -398,3 +398,8 @@ function logUserEmailSet() {
 
     document.getElementById("log_User").innerHTML = userJson.emailId;
 }
+
+function logOut() {
+    localStorage.clear();
+    window.location.href = "/index.html";
+}
