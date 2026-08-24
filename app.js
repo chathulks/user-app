@@ -159,6 +159,17 @@ function onClickResetPassword() {
             .then(data => {
                 showAlert("forget-pw-modal", "success", data.message);
                 document.getElementById("email-address").value = "";
+
+                const modal = new bootstrap.Modal(
+                    document.getElementById("modal-2")
+                );
+
+                modal.show();
+
+                const modalElement = document.getElementById("modal-1");
+                const modal_one = bootstrap.Modal.getInstance(modalElement);
+                modal_one.hide();
+
             })
             .catch(error => {
                 console.error(error);
