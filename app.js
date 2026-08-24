@@ -233,7 +233,8 @@ function onclickOTPcheck() {
 
 function onClickOTPcode() {
 
-
+    const verifyData = JSON.parse(localStorage.getItem("verifyData"));
+    const verifyEmail = JSON.parse(localStorage.getItem("verifyEmail"));
 
     let password = document.getElementById("n_pw").value;
     let conform_password = document.getElementById("nc_pw").value;
@@ -246,8 +247,8 @@ function onClickOTPcode() {
         if (password == conform_password) {
 
             const verfy_data = {
-                "email": email,
-                "otp": verfycationCode,
+                "email": verifyEmail.useEmail,
+                "otp": verifyData.vc,
                 "newPassword": conform_password
             }
 
