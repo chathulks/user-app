@@ -255,6 +255,11 @@ async function onClickOTPcode() {
 
                 if (res.ok) {
                     showAlert("conform-password", "success", result);
+
+                    document.getElementById("n_pw").value = "";
+                    document.getElementById("nc_pw").value = "";
+
+                    localStorage.clear();
                 } else {
                     showAlert("conform-password", "danger", result);
                 }
