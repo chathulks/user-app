@@ -181,8 +181,7 @@ function onClickResetPassword() {
 
 }
 
-function onClickOTPcode() {
-
+function onclickOTPcheck() {
     let vc_1 = document.getElementById("vc_1").value;
     let vc_2 = document.getElementById("vc_2").value;
     let vc_3 = document.getElementById("vc_3").value;
@@ -191,51 +190,60 @@ function onClickOTPcode() {
     let vc_6 = document.getElementById("vc_6").value;
 
     if (vc_1 == "") {
-        showAlert("forget-pw-modal", "danger", "Please Enter First Value.");
+        showAlert("otp-check", "danger", "Please Enter First Value.");
     } else if (vc_2 == "") {
-        showAlert("forget-pw-modal", "danger", "Please Enter Second Value.");
+        showAlert("otp-check", "danger", "Please Enter Second Value.");
     } else if (vc_3 == "") {
-        showAlert("forget-pw-modal", "danger", "Please Enter Thrird Value.");
+        showAlert("otp-check", "danger", "Please Enter Thrird Value.");
     } else if (vc_4 == "") {
-        showAlert("forget-pw-modal", "danger", "Please Enter Four Value.");
+        showAlert("otp-check", "danger", "Please Enter Four Value.");
     } else if (vc_5 == "") {
-        showAlert("forget-pw-modal", "danger", "Please Enter Five Value.");
+        showAlert("otp-check", "danger", "Please Enter Five Value.");
     } else if (vc_6 == "") {
-        showAlert("forget-pw-modal", "danger", "Please Enter Six Value.");
+        showAlert("otp-check", "danger", "Please Enter Six Value.");
     } else {
         let verfycationCode = vc_1 + "" + vc_2 + "" + vc_3 + "" + vc_4 + "" + vc_5 + "" + vc_6;
+        onClickOTPcode(verfycationCode);
+    }
+}
 
-        let email = document.getElementById("email-address").value;
-        let password = document.getElementById("n_pw").value;
-        let conform_password = document.getElementById("nc_pw").value;
+function onClickOTPcode(OTP_Code) {
 
-        if (password == "") {
-            showAlert("forget-pw-modal", "danger", "Please Enter Your Password.");
-        } else if (conform_password == "") {
-            showAlert("forget-pw-modal", "danger", "Please Enter Conform Password.");
-        } else {
-            if (password == conform_password) {
-                const verfy_data = {
-                    "email": email,
-                    "otp": verfycationCode,
-                    "newPassword": conform_password
-                }
+    let verfycationCode = OTP_Code;
 
-                fetch(`https://api.freeprojectapi.com/api/UserApp/verify-otp-reset-password`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(verfy_data)
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log(data);
-                    });
+    let email = document.getElementById("email-address").value;
+    let password = document.getElementById("n_pw").value;
+    let conform_password = document.getElementById("nc_pw").value;
 
-            }else{
-                showAlert("forget-pw-modal", "danger", "Your Password Not Same.");
+    if (password == "") {
+        showAlert("forget-pw-modal", "danger", "Please Enter Your Password.");
+    } else if (conform_password == "") {
+        showAlert("forget-pw-modal", "danger", "Please Enter Conform Password.");
+    } else {
+        if (password == conform_password) {
+            const verfy_data = {
+                "email": email,
+                "otp": verfycationCode,
+                "newPassword": conform_password
             }
-        }
 
+            fetch(`https://api.freeprojectapi.com/api/UserApp/verify-otp-reset-password`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(verfy_data)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error(error);
+                    showAlert("token-alert", "danger", "Something went wrong!");
+                });
+
+        } else {
+            showAlert("forget-pw-modal", "danger", "Your Password Not Same.");
+        }
     }
 
 }
