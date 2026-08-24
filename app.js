@@ -204,6 +204,16 @@ function onclickOTPcheck() {
     } else {
         let verfycationCode = vc_1 + "" + vc_2 + "" + vc_3 + "" + vc_4 + "" + vc_5 + "" + vc_6;
         onClickOTPcode(verfycationCode);
+
+        const modal = new bootstrap.Modal(
+            document.getElementById("modal-3")
+        );
+
+        modal.show();
+
+        const modalElement = document.getElementById("modal-2");
+        const modal_one = bootstrap.Modal.getInstance(modalElement);
+        modal_one.hide();
     }
 }
 
