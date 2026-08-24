@@ -223,7 +223,7 @@ function onclickOTPcheck() {
     }
 }
 
-function onClickOTPcode() {
+async function onClickOTPcode() {
 
     const useEmail = localStorage.getItem("useEmail");
     const verifyCode = localStorage.getItem("verifyCode");
@@ -244,20 +244,25 @@ function onClickOTPcode() {
                 "newPassword": conform_password
             }
 
-            fetch(`https://api.freeprojectapi.com/api/UserApp/verify-otp-reset-password`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(verfy_data)
-            })
-                .then(response => response.json())
-                .then(data => {
-                    localStorage.clear();
-                    showAlert("conform-password", "success", data.response);
+            try {
+                const res = await fetch(`https://api.freeprojectapi.com/api/UserApp/verify-otp-reset-password`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(verfy_data)
                 })
-                .catch(error => {
-                    console.error(error);
-                    showAlert("conform-password", "danger", "Something went wrong!");
-                });
+
+                const result = await res.text();
+
+                if (res.ok) {
+                    showAlert("conform-password", "success", result);
+                } else {
+                    showAlert("conform-password", "danger", result);
+                }
+
+            } catch (error) {
+                console.error(error);
+                showAlert("conform-password", "danger", "Something went wrong!");
+            }
 
         } else {
             showAlert("conform-password", "danger", "Your Password Not Same!.");
