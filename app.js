@@ -307,6 +307,10 @@ async function updateOnClick() {
 
             if (res.ok) {
                 showAlert("update-password", "success", result);
+
+                document.getElementById("us_id").value = "";
+                document.getElementById("epw_id").value = "";
+                document.getElementById("npw_id").value = "";
             } else {
                 showAlert("update-password", "danger", result);
             }
