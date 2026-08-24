@@ -157,7 +157,12 @@ function onClickResetPassword() {
         })
             .then(response => response.json())
             .then(data => {
-                alert(data.message);
+                showAlert("forget-pw-modal", "success", data.message);
+                document.getElementById("email-address").value = "";
+            })
+            .catch(error => {
+                console.error(error);
+                showAlert("token-alert", "danger", "Something went wrong!");
             });
 
         your_email_setSpan.innerHTML = email;
