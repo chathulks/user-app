@@ -226,9 +226,9 @@ function onClickOTPcode(OTP_Code) {
     let conform_password = document.getElementById("nc_pw").value;
 
     if (password == "") {
-        showAlert("forget-pw-modal", "danger", "Please Enter Your Password.");
+        showAlert("conform-password", "danger", "Please Enter Your Password.");
     } else if (conform_password == "") {
-        showAlert("forget-pw-modal", "danger", "Please Enter Conform Password.");
+        showAlert("conform-password", "danger", "Please Enter Conform Password.");
     } else {
         if (password == conform_password) {
             const verfy_data = {
@@ -248,11 +248,11 @@ function onClickOTPcode(OTP_Code) {
                 })
                 .catch(error => {
                     console.error(error);
-                    showAlert("token-alert", "danger", "Something went wrong!");
+                    showAlert("conform-password", "danger", "Something went wrong!");
                 });
 
         } else {
-            showAlert("forget-pw-modal", "danger", "Your Password Not Same.");
+            showAlert("conform-password", "danger", "Your Password Not Same.");
         }
     }
 
