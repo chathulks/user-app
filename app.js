@@ -157,7 +157,15 @@ function onClickResetPassword() {
         })
             .then(response => response.json())
             .then(data => {
+
                 showAlert("forget-pw-modal", "success", data.message);
+
+                const verifyData = {
+                    "useEmail": email
+                }
+
+                localStorage.setItem("verifyData", JSON.stringify(verifyData));
+
                 document.getElementById("email-address").value = "";
 
                 const modal = new bootstrap.Modal(
@@ -182,6 +190,7 @@ function onClickResetPassword() {
 }
 
 function onclickOTPcheck() {
+
     let vc_1 = document.getElementById("vc_1").value;
     let vc_2 = document.getElementById("vc_2").value;
     let vc_3 = document.getElementById("vc_3").value;
@@ -203,7 +212,12 @@ function onclickOTPcheck() {
         showAlert("otp-check", "danger", "Please Enter Six Value.");
     } else {
         let verfycationCode = vc_1 + "" + vc_2 + "" + vc_3 + "" + vc_4 + "" + vc_5 + "" + vc_6;
-        onClickOTPcode(verfycationCode);
+
+        const verifyData = {
+            "vc": verfycationCode
+        }
+
+        localStorage.setItem("verifyData", JSON.stringify(verifyData));
 
         const modal = new bootstrap.Modal(
             document.getElementById("modal-3")
@@ -217,11 +231,10 @@ function onclickOTPcheck() {
     }
 }
 
-function onClickOTPcode(OTP_Code) {
+function onClickOTPcode() {
 
-    let verfycationCode = OTP_Code;
 
-    let email = document.getElementById("email-address").value;
+
     let password = document.getElementById("n_pw").value;
     let conform_password = document.getElementById("nc_pw").value;
 
@@ -231,6 +244,7 @@ function onClickOTPcode(OTP_Code) {
         showAlert("conform-password", "danger", "Please Enter Conform Password.");
     } else {
         if (password == conform_password) {
+
             const verfy_data = {
                 "email": email,
                 "otp": verfycationCode,
@@ -245,6 +259,7 @@ function onClickOTPcode(OTP_Code) {
                 .then(response => response.json())
                 .then(data => {
                     console.log(data);
+                    showAlert("conform-password", "success", "Password Updated.");
                 })
                 .catch(error => {
                     console.error(error);
