@@ -277,27 +277,44 @@ async function onClickOTPcode() {
 
 }
 
-function updateOnClick() {
+async function updateOnClick() {
 
     let user_id = document.getElementById("us_id").value;
 
     let exitPassword = document.getElementById("epw_id").value;
     let newPassword = document.getElementById("npw_id").value;
 
-    const pw_details = {
-        "existingPassword": exitPassword,
-        "newPassword": newPassword
-    }
+    if (user_id == "") {
+        showAlert("update-password", "danger", "Please Enter User ID");
+    } else if (exitPassword == "") {
+        showAlert("update-password", "danger", "Please Enter Exit Password");
+    } else if (newPassword == "") {
+        showAlert("update-password", "danger", "Please Enter New Password");
+    } else {
+        const pw_details = {
+            "existingPassword": exitPassword,
+            "newPassword": newPassword
+        }
 
-    fetch(`https://api.freeprojectapi.com/api/UserApp/update-password/${user_id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(pw_details)
-    })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data.status);
-        });
+        try {
+            const res = await fetch(`https://api.freeprojectapi.com/api/UserApp/update-password/${user_id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(pw_details)
+            })
+
+            const result = await res.text();
+
+            if (res.ok) {
+                showAlert("update-password", "success", result);
+            } else {
+                showAlert("update-password", "danger", result);
+            }
+        } catch (error) {
+            console.error(error);
+            showAlert("conform-password", "danger", "Something went wrong!");
+        }
+    }
 
 }
 
